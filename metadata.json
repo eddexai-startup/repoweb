@@ -1,0 +1,6 @@
+{
+  "name": "Solid State Roofing — Architectural Roofing Systems",
+  "description": "Premium roofing website concept for Solid State Roofing, featuring architectural metal, slate systems, commercial structures, and interactive assessment estimator.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
