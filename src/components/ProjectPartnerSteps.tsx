@@ -11,6 +11,22 @@ export const ProjectPartnerSteps: React.FC<ProjectPartnerStepsProps> = ({ onRequ
   const [activeStep, setActiveStep] = useState<number>(0);
   const [videoModalOpen, setVideoModalOpen] = useState<boolean>(false);
 
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && videoModalOpen) {
+        setVideoModalOpen(false);
+      }
+    };
+    if (videoModalOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [videoModalOpen]);
+
   const steps = [
     {
       num: '01',
@@ -33,7 +49,7 @@ export const ProjectPartnerSteps: React.FC<ProjectPartnerStepsProps> = ({ onRequ
   ];
 
   return (
-    <section className="py-20 bg-[#FAF8F5] border-b border-neutral-200/80 overflow-hidden">
+    <section id="services" className="py-20 bg-[#FAF8F5] border-b border-neutral-200/80 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
         
         {/* Sub-Section 1: "Your Reliable Partner for Every Project" */}

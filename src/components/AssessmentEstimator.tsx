@@ -143,6 +143,10 @@ export const AssessmentEstimator: React.FC<AssessmentEstimatorProps> = ({ initia
                 onChange={(e) => setFootprintSqFt(Number(e.target.value))}
                 className="w-full h-2 bg-neutral-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
                 aria-label="Ground building footprint in square feet"
+                aria-valuemin={600}
+                aria-valuemax={10000}
+                aria-valuenow={footprintSqFt}
+                aria-valuetext={`${footprintSqFt.toLocaleString()} square feet`}
               />
               <div className="flex justify-between text-[10px] text-neutral-500 font-mono mt-1">
                 <span>600 sq ft (Compact)</span>
@@ -325,10 +329,14 @@ export const AssessmentEstimator: React.FC<AssessmentEstimatorProps> = ({ initia
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="e.g. Eleanor Vance / Highland Development Corp"
-                    className="w-full px-3.5 py-2.5 bg-white border border-neutral-200 rounded-xl text-xs text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-blue-600 shadow-sm"
+                    aria-invalid={!!formErrors.name}
+                    aria-describedby={formErrors.name ? "name-error" : undefined}
+                    className={`w-full px-3.5 py-2.5 bg-white border rounded-xl text-xs text-neutral-900 placeholder-neutral-400 focus:outline-none shadow-sm ${
+                      formErrors.name ? 'border-red-500 focus:border-red-600' : 'border-neutral-200 focus:border-blue-600'
+                    }`}
                   />
                   {formErrors.name && (
-                    <p className="text-[11px] text-red-500 mt-1">{formErrors.name}</p>
+                    <p id="name-error" className="text-[11px] text-red-500 mt-1" role="alert">{formErrors.name}</p>
                   )}
                 </div>
 
@@ -342,10 +350,14 @@ export const AssessmentEstimator: React.FC<AssessmentEstimatorProps> = ({ initia
                     value={contactInfo}
                     onChange={(e) => setContactInfo(e.target.value)}
                     placeholder="e.g. evance@estate.com or (555) 019-2831"
-                    className="w-full px-3.5 py-2.5 bg-white border border-neutral-200 rounded-xl text-xs text-neutral-900 placeholder-neutral-400 focus:outline-none focus:border-blue-600 shadow-sm"
+                    aria-invalid={!!formErrors.contact}
+                    aria-describedby={formErrors.contact ? "contact-error" : undefined}
+                    className={`w-full px-3.5 py-2.5 bg-white border rounded-xl text-xs text-neutral-900 placeholder-neutral-400 focus:outline-none shadow-sm ${
+                      formErrors.contact ? 'border-red-500 focus:border-red-600' : 'border-neutral-200 focus:border-blue-600'
+                    }`}
                   />
                   {formErrors.contact && (
-                    <p className="text-[11px] text-red-500 mt-1">{formErrors.contact}</p>
+                    <p id="contact-error" className="text-[11px] text-red-500 mt-1" role="alert">{formErrors.contact}</p>
                   )}
                 </div>
 

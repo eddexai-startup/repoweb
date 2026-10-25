@@ -96,6 +96,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenProductionChecklist, onReq
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
+                aria-label="Email address for roof care newsletter"
                 className="w-full pl-4 pr-12 py-2.5 bg-neutral-900 border border-neutral-800 rounded-full text-xs text-white placeholder-neutral-500 focus:outline-none focus:border-blue-500"
               />
               <motion.button

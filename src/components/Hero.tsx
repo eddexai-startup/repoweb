@@ -132,16 +132,16 @@ export const Hero: React.FC<HeroProps> = ({ onRequestQuote, onSelectStyle }) => 
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.55 }}
               className="mt-10 w-full max-w-md p-4 sm:p-5 rounded-2xl bg-white border border-neutral-200/90 shadow-xl shadow-neutral-900/5 transition-all duration-300 hover:shadow-2xl hover:border-neutral-300"
             >
-              <div className="flex items-center justify-between pb-3 border-b border-neutral-100">
-                <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-neutral-100">
+                <div className="flex flex-wrap items-center gap-2">
                   <span className="font-display text-sm font-bold text-neutral-900">
                     Modern Roof Style
                   </span>
-                  <span className="text-[10px] font-mono text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-100 font-semibold">
+                  <span className="text-[10px] font-mono text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-100 font-semibold whitespace-nowrap">
                     {swatches[selectedSwatch].spec}
                   </span>
                 </div>
-                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-neutral-100 text-[11px] font-medium text-neutral-700">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-neutral-100 text-[11px] font-medium text-neutral-700 whitespace-nowrap">
                   <span className="text-blue-600 text-[10px] animate-pulse">●</span> 2:40 Guide
                 </span>
               </div>
@@ -156,6 +156,8 @@ export const Hero: React.FC<HeroProps> = ({ onRequestQuote, onSelectStyle }) => 
                       setSelectedSwatch(idx);
                       onSelectStyle(swatch.name);
                     }}
+                    aria-label={`Select ${swatch.name} roofing material`}
+                    aria-pressed={selectedSwatch === idx}
                     className={`relative w-14 h-14 rounded-xl overflow-hidden border-2 transition-all duration-200 cursor-pointer ${
                       selectedSwatch === idx
                         ? 'border-blue-600 scale-105 shadow-md ring-2 ring-blue-600/20'
@@ -179,12 +181,13 @@ export const Hero: React.FC<HeroProps> = ({ onRequestQuote, onSelectStyle }) => 
 
               {/* Interactive Simulator Tags */}
               <div className="mt-3.5 pt-3 border-t border-neutral-100 flex items-center justify-between gap-1.5 flex-wrap">
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-1.5 flex-wrap">
                   {['Suggest', 'Metal', 'Slate', 'Generate'].map((tag) => (
                     <button
                       key={tag}
                       type="button"
                       onClick={() => setActiveTag(tag)}
+                      aria-pressed={activeTag === tag}
                       className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-150 cursor-pointer ${
                         activeTag === tag
                           ? 'bg-neutral-900 text-white shadow-sm scale-105'
